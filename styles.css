@@ -628,7 +628,7 @@ body {
 }
 
 .tag-btn{
-    padding: 10px 26px;
+    padding: 15px 26px;
     background: #d7e8ff;
     color: #0e62ff;
     border: 0;
@@ -901,3 +901,4 @@ body {
         gap: 40px;
     }
 }
+
