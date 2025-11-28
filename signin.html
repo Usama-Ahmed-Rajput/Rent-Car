@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENT CARS - Sign In</title>
+    <link rel="shortcut icon" href="./images/fav.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* Specific login/signup form ki styling jo main styles.css mein nahi hai */
+        .auth-container {
+            min-height: 80vh; /* Ya jo bhi aapko theek lage */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            background-color: #f8f9fa; /* Background color for distinction */
+        }
+        .auth-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .auth-card h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #242424;
+            text-align: center;
+        }
+        .form-control:focus {
+            border-color: #1572d3;
+            box-shadow: 0 0 0 0.25rem rgba(21, 114, 211, 0.25);
+        }
+        .form-label {
+            font-weight: 500;
+            color: #484848;
+        }
+        .btn-auth {
+            background: #1572d3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-auth:hover {
+            background: #0f5cb3;
+        }
+        .text-center a {
+            color: #1572d3;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .text-center a:hover {
+            color: #0f5cb3;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar navbar-expand-lg bg-white py-4">
+            <div class="container">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="./images/Frame 993.png" alt="logo" height="30">
+                </a>
+                </div>
+        </nav>
+    </header>
+
+    <section class="auth-container">
+        <div class="auth-card">
+            <h2>Sign In to Rentcars</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-auth">Sign In</button>
+                </div>
+                <div class="text-center mt-3">
+                    <p class="mb-1">Forgot Password? <a href="#">Click here</a></p>
+                    <p class="mb-0">Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary">
+                <p class="mb-0 text-center">Copyright 2025 © RENTCARS | All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module">
+    // 1. Firebase SDK Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { 
+        getAuth, 
+        signInWithEmailAndPassword 
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+    // 2. Firebase Configuration (Aapki di gayi details)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCL1937zd2Ji7EZI3z8VFqd5KEykogMZJE",
+        authDomain: "rentcars-login.firebaseapp.com",
+        projectId: "rentcars-login",
+        storageBucket: "rentcars-login.firebasestorage.app",
+        messagingSenderId: "1064235784532",
+        appId: "1:1064235784532:web:886220183ec26c66c990c1"
+    };
+
+    // 3. Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 4. Login Logic
+    const loginForm = document.querySelector('.auth-card form');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Default form submit ko roken
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        if (!email || !password) {
+            alert("Please Enter Email or password.");
+            return;
+        }
+
+        try {
+            // Firebase se sign in karen
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            
+            // User ko home page (index.html) par redirect karen
+            window.location.href = "index.html"; 
+
+        } catch (error) {
+            const errorCode = error.code;
+            let errorMessage = "Login mein ghalti hui.";
+
+            if (errorCode === 'auth/invalid-credential' || errorCode === 'auth/wrong-password' || errorCode === 'auth/user-not-found') {
+                // Yeh error code wrong email ya password ke liye aata hai.
+                errorMessage = "Email or Password is incorrect.";
+            } else if (errorCode === 'auth/invalid-email') {
+                errorMessage = "Email format ghalat hai.";
+            }
+            
+            alert(errorMessage);
+            console.error("Login Error:", error);
+        }
+    });
+</script>
+</body>
+</html>
