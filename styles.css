@@ -53,8 +53,11 @@ ul {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
-    a{
+
+    a {
         color: white;
+
+    }
 }
 
 .btn-signup:hover {
@@ -126,6 +129,7 @@ ul {
     .border-lg-end {
         border-right: 1px solid #c8c8c8;
     }
+
     .border-lg-bottom-0 {
         border-bottom: none !important;
     }
@@ -343,13 +347,13 @@ ul {
     margin-top: 15px;
 }
 
-/* Testimonial Card */
+/* Testimonial Card Styling */
 .testimonial-card {
     background: white;
     border-radius: 16px;
     padding: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    height: 100%; 
+    height: 100%;
 }
 
 /* Rating Styling */
@@ -404,11 +408,11 @@ ul {
 /* Responsive*/
 @media (max-width: 768px) {
     .section-header h2 {
-        font-size: 28px; 
+        font-size: 28px;
     }
-    
+
     .testimonial-card {
-        padding: 20px; 
+        padding: 20px;
     }
 }
 
@@ -426,7 +430,8 @@ ul {
     color: #007bff;
 }
 
-.play-btn, .apple-btn {
+.play-btn,
+.apple-btn {
     width: 140px;
     cursor: pointer;
 }
@@ -466,4 +471,3 @@ ul {
 .social-links a:hover {
     background: #1572d3;
 }
-
