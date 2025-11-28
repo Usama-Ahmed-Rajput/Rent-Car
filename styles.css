@@ -46,7 +46,6 @@ ul {
 
 .btn-signup {
     background: #1572d3;
-    color: white;
     border: none;
     padding: 12px 25px;
     border-radius: 8px;
@@ -54,6 +53,8 @@ ul {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
+    a{
+        color: white;
 }
 
 .btn-signup:hover {
@@ -465,3 +466,4 @@ ul {
 .social-links a:hover {
     background: #1572d3;
 }
+
